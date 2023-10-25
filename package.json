@@ -5,9 +5,22 @@
   "scripts": {
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
-    "start": "wrangler dev"
+    "start": "wrangler dev",
+    "build": "rollup --config",
+    "watch": "rollup --config --watch"
+  },
+  "dependencies": {
+    "react": "npm:@preact/compat@^17.1.2",
+    "react-dom": "npm:@preact/compat@^17.1.2"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.22.15",
+    "@cloudflare/kv-asset-handler": "^0.3.0",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-commonjs": "^25.0.4",
+    "@rollup/plugin-node-resolve": "^15.2.1",
+    "@rollup/plugin-replace": "^5.0.2",
+    "rollup": "^4.1.4",
     "wrangler": "^3.0.0"
   }
 }

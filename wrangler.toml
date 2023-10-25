@@ -2,6 +2,8 @@ name = "oncall-check"
 main = "src/index.js"
 compatibility_date = "2023-10-23"
 
+[site]
+bucket = "./static"
 # [vars]
 # MY_VARIABLE = "production_value"
 
