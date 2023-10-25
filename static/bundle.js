@@ -18,11 +18,61 @@
 		};
 	}
 
-	function App() {
+	const updateStatus = async (name, setStatus) => {
+	  const response = await fetch('/set', {
+	    method: "POST",
+	    headers: {
+	      "Content-Type": 'application/json'
+	    },
+	    body: JSON.stringify({
+	      name
+	    })
+	  });
+	  const responseText = await response.text();
+	  setStatus(responseText);
+	};
+	const Name = ({
+	  name,
+	  initialStatus
+	}) => {
+	  const [status, setStatus] = h(initialStatus);
+	  p(() => {
+	    setStatus(initialStatus);
+	  }, [initialStatus]);
+	  return /*#__PURE__*/wn.createElement("div", {
+	    class: "name"
+	  }, /*#__PURE__*/wn.createElement("p", null, name), /*#__PURE__*/wn.createElement("span", {
+	    class: `dot_${status}`,
+	    id: name,
+	    onClick: () => updateStatus(name, setStatus)
+	  }));
+	};
+
+	const getStatus = async setStatuses => {
+	  const response = await fetch(`/get`, {
+	    method: "GET"
+	  });
+	  const responseJSON = await response.json();
+	  setStatuses(responseJSON);
+	};
+	const App = () => {
+	  const [statuses, setStatuses] = h({});
+	  p(() => {
+	    getStatus(setStatuses);
+	  }, []);
 	  return /*#__PURE__*/wn.createElement("div", {
 	    className: "my app"
-	  }, /*#__PURE__*/wn.createElement("p", null, "Hello World"));
-	}
+	  }, /*#__PURE__*/wn.createElement("h1", null, "On-call Check"), /*#__PURE__*/wn.createElement(Name, {
+	    name: "Lucas",
+	    initialStatus: statuses['Lucas']
+	  }), /*#__PURE__*/wn.createElement(Name, {
+	    name: "Jason",
+	    initialStatus: statuses['Jason']
+	  }), /*#__PURE__*/wn.createElement(Name, {
+	    name: "Josh",
+	    initialStatus: statuses['Josh']
+	  }));
+	};
 
 	const container = document.getElementById("root");
 	const root = createRoot(container);
