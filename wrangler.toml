@@ -1,0 +1,12 @@
+name = "oncall-check"
+main = "src/index.js"
+compatibility_date = "2023-10-23"
+
+# [vars]
+# MY_VARIABLE = "production_value"
+
+# Bind a KV Namespace. Use KV as persistent storage for small key-value pairs.
+# Docs: https://developers.cloudflare.com/workers/runtime-apis/kv
+# [[kv_namespaces]]
+# binding = "MY_KV_NAMESPACE"
+# id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
